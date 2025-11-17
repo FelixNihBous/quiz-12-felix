@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { Table, Button } from 'antd';
+import { Table, Button, Breadcrumb } from 'antd';
 
 const products = [
   { id: 1, name: 'Product 1', description: 'Description for Product 1', price: 10.99 },
@@ -9,6 +9,16 @@ const products = [
 
 export default function Products() {
   const router = useRouter();
+
+  const breadcrumbItems = [
+    {
+      title: 'Home',
+      href: '/',
+    },
+    {
+      title: 'Products',
+    },
+  ];
 
   const columns = [
     {
@@ -45,6 +55,7 @@ export default function Products() {
 
   return (
     <div style={{ padding: '20px' }}>
+      <Breadcrumb items={breadcrumbItems} style={{ marginBottom: '20px' }} />
       <h1>Product List</h1>
       <Table dataSource={products} columns={columns} rowKey="id" />
     </div>

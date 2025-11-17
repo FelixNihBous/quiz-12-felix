@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { Card, Button } from 'antd';
+import { Card, Button, Breadcrumb } from 'antd';
 
 const products = [
   { id: 1, name: 'Product 1', description: 'Description for Product 1', price: 10.99 },
@@ -17,8 +17,23 @@ export default function ProductDetails() {
     return <div>Product not found</div>;
   }
 
+  const breadcrumbItems = [
+    {
+      title: 'Home',
+      href: '/',
+    },
+    {
+      title: 'Products',
+      href: '/products',
+    },
+    {
+      title: product.name,
+    },
+  ];
+
   return (
     <div style={{ padding: '20px' }}>
+      <Breadcrumb items={breadcrumbItems} style={{ marginBottom: '20px' }} />
       <Card
         title={product.name}
         extra={<Button onClick={() => router.back()}>Back</Button>}
